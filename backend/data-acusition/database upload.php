@@ -4,19 +4,20 @@ $servername = "localhost";
 $username = "root";
 $password = "root";
 $dbname = "test";
-$r = new \Random\Randomizer();
 define("INTERVAL", 0.25);
 
-include('tcp_comn.php');
+include 'tcp_comn.php';
 
-$plc1 = new tcp_comn("192.168.0.10", 8501);
+$plc1 = new tcp_comn("192.168.110.10", 8501);
 
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("INSERT INTO test (MR201, MR203, MR205) VALUES (:MR201, :MR203, :MR205)");
+    $stmt = $conn->prepare("INSERT INTO data (register, value) VALUES ( 'MR201', :MR201);
+                            INSERT INTO data (register, value) VALUES ( 'MR203', :MR203);
+                            INSERT INTO data (register, value) VALUES ( 'MR205', :MR205)");
 
     while (true) {
 
