@@ -3,8 +3,8 @@
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$dbname = "test";
-define("INTERVAL", 0.25);
+$dbname = "plcwebaccess";
+define("INTERVAL", 1);
 
 include 'tcp_comn.php';
 
@@ -41,13 +41,14 @@ try {
                 $stmt->bindParam(':MR203', $MR203, PDO::PARAM_INT);
                 $stmt->bindParam(':MR205', $MR205, PDO::PARAM_INT);
                 $stmt->execute();
-                echo "New record created successfully";
+                echo "New record created successfully\n";
+                $stmt->closeCursor(); 
                 $nextTime = microtime(true) + INTERVAL;
             }
         }
     }
 } catch (PDOException $e) {
-    echo $sql . "<br>" . $e->getMessage();
+    echo $conn . "<br>" . $e->getMessage();
 }
 
 

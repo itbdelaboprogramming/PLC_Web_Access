@@ -2,7 +2,7 @@
 
 include('tcp_comn.php');
 
-$plc1 = new tcp_comn("192.168.0.10", 8501);
+$plc1 = new tcp_comn("192.168.110.10", 8501);
 
 $msg = $plc1->sendData("RDS DM201.L 3\r");
 

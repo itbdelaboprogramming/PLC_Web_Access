@@ -6,7 +6,7 @@ include 'tcp_comn.php';
 
 $lampList = array("green"=>0,"yellow"=>1,"red"=>2,"blue"=>3);
 
-$plc1 = new tcp_comn("192.168.0.10", 8501);
+$plc1 = new tcp_comn("192.168.110.10", 8501);
 
 
 
@@ -16,8 +16,15 @@ header('Content-Type: application/json');
 // Get the raw POST data
 $input = file_get_contents('php://input');
 
+
+
 // Decode the JSON data into a PHP array
 $data = json_decode($input, true);
+
+
+// Debugging output
+error_log("Input Data: " . $input);
+error_log("Decoded Data: " . print_r($data, true));
 
 // Check if the data was decoded properly
 if ($data !== null && isset($data['lamp'])) {
@@ -47,7 +54,7 @@ if ($data !== null && isset($data['lamp'])) {
     // Invalid or missing data
     $response = [
         'status' => 'error',
-        'message' => 'Invalid data received',
+        'message' => $input,
     ];
 }
 

@@ -22,11 +22,11 @@
         <div id="sidecontent" class="transition-all duration-300 delay-300 ease-out text-nowrap opacity-0">
             <div>
                 <!-- Placeholder for additional content -->
-                Main Page
+                <a href="?page=home">Main Page</a>
             </div>
             <div>
                 <!-- Placeholder for additional content -->
-                Energy
+                <a href="?page=energy">Energy</a>
             </div>
         </div>
     </div>
@@ -71,4 +71,14 @@
             }
         });
     });
+
+        // Function to load content
+        function loadContent(page) {
+            fetch(`content.php?page=${page}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('main-content').innerHTML = data;
+                })
+                .catch(error => console.error('Error fetching content:', error));
+        }
 </script>
