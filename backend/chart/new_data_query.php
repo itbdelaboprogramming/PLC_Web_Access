@@ -12,7 +12,7 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT * FROM `data` WHERE DATE(`timestamp`) > DATE_SUB(CURDATE(), INTERVAL 7 DAY)");
+    $stmt = $conn->prepare("SELECT * FROM `data` WHERE DATE(`timestamp`) > DATE_SUB(CURDATE(), INTERVAL 100000000 DAY)");
     $stmt->execute();
 
     while ($data = $stmt->fetch()) {
